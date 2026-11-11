@@ -1,7 +1,7 @@
 
-/* ================================
-   CONFIGURAÇÕES GERAIS
-================================ */
+/* ==================================================
+   1. CONFIGURAÇÕES GERAIS
+================================================== */
 
 :root {
     --background: #080808;
@@ -14,6 +14,19 @@
     --gray-dark: #707070;
 
     --accent: #ffffff;
+
+    /* Tecnologias */
+    --color-python: #FFD43B;
+    --color-csharp: #B77BFF;
+    --color-json: #F0DB4F;
+    --color-sql: #56B9E9;
+
+    /* Instituições */
+    --color-senac: #2876B9;
+    --color-besmart: #FF5555;
+    --color-fatec: #2876B9;
+    --color-ita: #55BFFF;
+    --color-pit: #B77BFF;
 }
 
 * {
@@ -29,15 +42,15 @@ html {
 }
 
 body {
-    background-color: var(--background);
-    color: var(--white);
     min-height: 100vh;
     overflow-x: hidden;
+    background-color: var(--background);
+    color: var(--white);
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 img {
@@ -50,9 +63,124 @@ section {
 }
 
 
-/* ================================
-   HEADER
-================================ */
+/* ==================================================
+   2. TÍTULOS E DESTAQUES
+================================================== */
+
+/* Efeito neon dos títulos */
+
+h1,
+h2,
+h3,
+h4 {
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.35),
+        0 0 12px rgba(255, 255, 255, 0.20),
+        0 0 22px rgba(255, 255, 255, 0.10);
+}
+
+/* Destaques coloridos */
+
+.text-highlight {
+    display: inline;
+    padding: 3px 8px;
+    border-radius: 6px;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--tag-color) 40%,
+        transparent
+    );
+
+    color: var(--tag-color);
+
+    background: color-mix(
+        in srgb,
+        var(--tag-color) 13%,
+        transparent
+    );
+
+    font-weight: 700;
+
+    text-shadow: 0 0 7px color-mix(
+        in srgb,
+        var(--tag-color) 45%,
+        transparent
+    );
+
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.text-highlight:hover {
+    background: color-mix(
+        in srgb,
+        var(--tag-color) 22%,
+        transparent
+    );
+
+    box-shadow: 0 0 10px color-mix(
+        in srgb,
+        var(--tag-color) 20%,
+        transparent
+    );
+}
+
+/* Nome */
+
+.name-highlight {
+    --tag-color: #FFFFFF;
+}
+
+/* Tecnologias */
+
+.python {
+    --tag-color: var(--color-python);
+}
+
+.csharp {
+    --tag-color: var(--color-csharp);
+}
+
+.json {
+    --tag-color: var(--color-json);
+}
+
+.sql {
+    --tag-color: var(--color-sql);
+}
+
+/* Instituições */
+
+.senac {
+    --tag-color: var(--color-senac);
+}
+
+.fatec {
+    --tag-color: var(--color-fatec);
+}
+
+.besmart {
+    --tag-color: var(--color-besmart);
+}
+
+.ita {
+    --tag-color: var(--color-ita);
+}
+
+.pit {
+    --tag-color: var(--color-pit);
+}
+
+
+/* ==================================================
+   3. HEADER E NAVEGAÇÃO
+================================================== */
 
 header {
     position: sticky;
@@ -60,10 +188,13 @@ header {
     z-index: 100;
 
     width: 100%;
+
     background: rgba(8, 8, 8, 0.92);
     backdrop-filter: blur(15px);
 
     border-bottom: 1px solid var(--border);
+
+    animation: headerEnter 0.8s ease-out both;
 }
 
 .navbar {
@@ -102,7 +233,8 @@ header {
     color: var(--gray);
     font-size: 13px;
     font-weight: 500;
-    transition: 0.3s;
+
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -110,9 +242,9 @@ header {
 }
 
 
-/* ================================
-   HERO
-================================ */
+/* ==================================================
+   4. HERO / APRESENTAÇÃO
+================================================== */
 
 .hero {
     max-width: 1400px;
@@ -127,6 +259,10 @@ header {
     gap: 80px;
 }
 
+.hero-image {
+    animation: fadeUp 0.9s ease-out 0.2s both;
+}
+
 .hero-image img {
     filter: none;
     transition: transform 0.4s ease;
@@ -136,33 +272,45 @@ header {
     transform: translateY(-5px);
 }
 
+.hero-content {
+    animation: fadeUp 0.9s ease-out 0.4s both;
+}
+
 .section-label {
     display: block;
+
+    margin-bottom: 20px;
 
     color: var(--gray-dark);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
-
-    margin-bottom: 20px;
 }
 
 .hero h1 {
+    margin-bottom: 25px;
+
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(35px, 5vw, 65px);
     line-height: 1.15;
     font-weight: 800;
     letter-spacing: -2px;
-
-    margin-bottom: 25px;
 }
 
 .hero-description {
+    max-width: 550px;
+
     color: var(--gray);
     font-size: 15px;
-    line-height: 1.9;
-    max-width: 550px;
+    line-height: 2;
 }
+
+.hero-description strong {
+    color: var(--white);
+    font-weight: 800;
+}
+
+/* Botões */
 
 .hero-buttons {
     display: flex;
@@ -180,7 +328,7 @@ header {
     font-size: 13px;
     font-weight: 600;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .btn-primary {
@@ -207,11 +355,15 @@ header {
     border-color: #555;
 }
 
+/* Detalhes da apresentação */
+
 .hero-divider {
     width: 100%;
     height: 1px;
-    background-color: var(--border);
+
     margin: 45px 0 25px;
+
+    background-color: var(--border);
 }
 
 .hero-details {
@@ -228,20 +380,23 @@ header {
 }
 
 .hero-details p {
+    max-width: 240px;
+
+    margin-top: 10px;
+
     color: var(--gray);
     font-size: 12px;
-    margin-top: 10px;
-    max-width: 240px;
     line-height: 1.6;
 }
 
 
-/* ================================
-   CONTAINERS DAS SEÇÕES
-================================ */
+/* ==================================================
+   5. CONTAINERS E TÍTULOS DAS SEÇÕES
+================================================== */
 
 .section-container {
     max-width: 1300px;
+
     margin: auto;
     padding: 85px 6%;
 }
@@ -263,14 +418,15 @@ header {
 }
 
 
-/* ================================
-   TECNOLOGIAS / HARDSKILLS
-================================ */
+/* ==================================================
+   6. TECNOLOGIAS / HARDSKILLS
+================================================== */
 
 #linguagens {
-    background-color: var(--surface);
     max-width: 100%;
     padding: 85px max(6%, calc((100% - 1150px) / 2));
+
+    background-color: var(--surface);
 }
 
 .technologies {
@@ -284,6 +440,7 @@ header {
 .technologies img {
     width: 65px;
     height: 65px;
+
     object-fit: contain;
 
     opacity: 1;
@@ -297,9 +454,9 @@ header {
 }
 
 
-/* ================================
-   FORMAÇÕES E SKILLS
-================================ */
+/* ==================================================
+   7. FORMAÇÕES E HABILIDADES
+================================================== */
 
 .information-grid {
     display: grid;
@@ -308,13 +465,13 @@ header {
 }
 
 .information-card {
+    padding: 35px;
+
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
 
-    padding: 35px;
-
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .information-card:hover {
@@ -331,9 +488,10 @@ header {
 }
 
 .information-card h3 {
+    margin: 25px 0;
+
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-    margin: 25px 0;
 }
 
 .information-card ul {
@@ -341,11 +499,12 @@ header {
 }
 
 .information-card li {
+    padding: 12px 0;
+
     color: var(--gray);
     font-size: 13px;
     line-height: 1.8;
 
-    padding: 12px 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -355,14 +514,55 @@ header {
 
 .information-card li::before {
     content: "—";
-    color: var(--gray-dark);
     margin-right: 12px;
+    color: var(--gray-dark);
+}
+
+/* Softskills com ícones */
+
+.softskills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.softskills-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.softskills-list li::before {
+    display: none;
+}
+
+.softskills-list i {
+    width: 22px;
+    min-width: 22px;
+
+    color: var(--white);
+    font-size: 18px;
+    text-align: center;
+
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.45);
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.softskills-list li:hover i {
+    color: var(--color-ita);
+    transform: scale(1.15);
 }
 
 
-/* ================================
-   PROJETOS
-================================ */
+/* ==================================================
+   8. PROJETOS
+================================================== */
 
 .projects-grid {
     display: grid;
@@ -371,19 +571,18 @@ header {
 }
 
 .project-card {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-
+    min-height: 340px;
     padding: 30px;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
-    min-height: 340px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .project-card:hover {
@@ -400,47 +599,53 @@ header {
 }
 
 .project-card h3 {
+    margin: 25px 0 15px;
+
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-    margin: 25px 0 15px;
 }
 
 .project-card h4 {
+    margin-bottom: 15px;
+
     color: var(--gray-dark);
     font-size: 12px;
-    margin-bottom: 15px;
 }
 
 .project-card p {
+    margin-bottom: 15px;
+
     color: var(--gray);
     font-size: 13px;
     line-height: 1.8;
-    margin-bottom: 15px;
 }
 
 .project-card strong {
     color: var(--white);
 }
 
+/* Link do projeto */
+
 .project-link {
     display: inline-flex;
     align-items: center;
     gap: 12px;
 
+    margin-top: auto;
+    padding-top: 25px;
+
     color: var(--white);
     font-size: 12px;
     font-weight: 600;
 
-    margin-top: auto;
-    padding-top: 25px;
-
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .project-link span {
-    font-size: 17px;
     color: var(--gray-dark);
-    transition: 0.3s;
+    font-size: 17px;
+
+    transition: 0.3s ease;
 }
 
 .project-link:hover {
@@ -453,14 +658,15 @@ header {
 }
 
 
-/* ================================
-   FOOTER / CONTATOS
-================================ */
+/* ==================================================
+   9. FOOTER / CONTATOS
+================================================== */
 
 footer {
+    padding: 80px 6% 25px;
+
     background-color: var(--surface);
     border-top: 1px solid var(--border);
-    padding: 80px 6% 25px;
 }
 
 .footer-content {
@@ -473,14 +679,17 @@ footer {
 }
 
 .footer-heading p {
+    margin-top: 15px;
+
     color: var(--gray);
     font-size: 13px;
-    margin-top: 15px;
 }
+
+/* Organização dos cartões */
 
 .contact-links {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
@@ -495,7 +704,7 @@ footer {
     border: 1px solid #303030;
     border-radius: 10px;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .contact-card:hover {
@@ -504,17 +713,29 @@ footer {
     transform: translateY(-4px);
 }
 
+/* Ícones */
+
 .contact-card img {
     width: 42px;
     height: 42px;
+
     object-fit: contain;
     filter: none;
 }
 
+.contact-card > i {
+    min-width: 35px;
+    font-size: 30px;
+    text-align: center;
+}
+
+/* Textos */
+
 .contact-card h3 {
+    margin-bottom: 6px;
+
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
-    margin-bottom: 6px;
 }
 
 .contact-card p {
@@ -522,17 +743,58 @@ footer {
     font-size: 11px;
 }
 
+/* Seta */
+
 .contact-arrow {
+    margin-left: auto;
+
     color: var(--gray-dark);
     font-size: 20px;
-    margin-left: auto;
-    transition: 0.3s;
+
+    transition: 0.3s ease;
 }
 
 .contact-card:hover .contact-arrow {
     color: var(--white);
     transform: translate(3px, -3px);
 }
+
+/* Cartão de e-mail */
+
+.contact-card.email-card {
+    background: rgba(255, 150, 150, 0.16);
+    border-color: rgba(255, 150, 150, 0.4);
+}
+
+.email-card > i {
+    color: #ff9999;
+    text-shadow: 0 0 12px rgba(255, 120, 120, 0.35);
+}
+
+.contact-card.email-card:hover {
+    background: rgba(255, 150, 150, 0.25);
+    border-color: #ff9999;
+}
+
+/* Cartão do LinkedIn */
+
+.contact-card.linkedin-card {
+    background: rgba(120, 180, 255, 0.16);
+    border-color: rgba(120, 180, 255, 0.4);
+    cursor: default;
+}
+
+.linkedin-card > i {
+    color: #8fc5ff;
+    text-shadow: 0 0 12px rgba(100, 170, 255, 0.4);
+}
+
+.contact-card.linkedin-card:hover {
+    background: rgba(120, 180, 255, 0.25);
+    border-color: #8fc5ff;
+}
+
+/* Rodapé inferior */
 
 .footer-bottom {
     display: flex;
@@ -556,9 +818,85 @@ footer {
 }
 
 
-/* ================================
-   RESPONSIVIDADE
-================================ */
+/* ==================================================
+   10. ANIMAÇÕES
+================================================== */
+
+/* Entrada do header */
+
+@keyframes headerEnter {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Entrada do Hero */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de scroll */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cursor da digitação */
+
+#typing-text::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 3px;
+
+    color: var(--white);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+
+    animation: typingCursor 0.7s infinite;
+}
+
+@keyframes typingCursor {
+    0%, 49% {
+        opacity: 1;
+    }
+
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+
+/* ==================================================
+   11. RESPONSIVIDADE
+================================================== */
+
+/* Tablets */
 
 @media (max-width: 900px) {
 
@@ -589,7 +927,12 @@ footer {
         gap: 45px;
     }
 
+    .contact-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
+
+/* Celulares */
 
 @media (max-width: 600px) {
 
@@ -658,8 +1001,9 @@ footer {
         gap: 15px;
         text-align: center;
     }
-
 }
+
+/* Acessibilidade: movimento reduzido */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -670,74 +1014,6 @@ footer {
     *,
     *::before,
     *::after {
-        transition-duration: 0.01ms !important;
-    }
-
-}
-
-
-@keyframes headerEnter {
-    from {
-        opacity: 0;
-        transform: translateY(-25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-header {
-    animation: headerEnter 0.8s ease-out both;
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-image {
-    animation: fadeUp 0.9s ease-out 0.2s both;
-}
-
-.hero-content {
-    animation: fadeUp 0.9s ease-out 0.4s both;
-}
-
-/* ================================
-   ANIMAÇÕES AO SCROLL
-================================ */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-
-    transition-delay: var(--reveal-delay, 0ms);
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .reveal,
-    .hero-image,
-    .hero-content,
-    header {
         animation: none !important;
         transition: none !important;
     }
