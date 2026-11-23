@@ -1,54 +1,44 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    const element = document.getElementById("typing-text");
 
-    if (!element) return;
+    const elements = document.querySelectorAll(`
+        .section-heading,
+        .technologies img,
+        .information-card,
+        .project-card,
+        .footer-heading,
+        .contact-card
+    `);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        return;
-    }
+    elements.forEach((element, index) => {
+        element.classList.add("reveal");
 
-    const originalContent = Array.from(element.childNodes);
+        // Pequeno atraso entre elementos próximos
+        element.style.setProperty(
+            "--reveal-delay",
+            `${(index % 3) * 120}ms`
+        );
+    });
 
-    element.innerHTML = "";
+    const observer = new IntersectionObserver((entries) => {
 
-    const characters = [];
+        entries.forEach((entry) => {
 
-    function prepareTyping(nodes, parent) {
-        nodes.forEach((node) => {
-            if (node.nodeType === Node.TEXT_NODE) {
-                const text = node.textContent;
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
 
-                for (const character of text) {
-                    const span = document.createElement("span");
-                    span.textContent = character;
-
-                    span.style.visibility = "hidden";
-
-                    parent.appendChild(span);
-                    characters.push(span);
-                }
-            } else if (node.nodeType === Node.ELEMENT_NODE) {
-                const clone = node.cloneNode(false);
-                parent.appendChild(clone);
-
-                prepareTyping(Array.from(node.childNodes), clone);
+                // Executa a animação apenas uma vez
+                observer.unobserve(entry.target);
             }
+
         });
-    }
 
-    prepareTyping(originalContent, element);
+    }, {
+        threshold: 0.15
+    });
 
-    let index = 0;
+    elements.forEach((element) => {
+        observer.observe(element);
+    });
 
-    function typeWriter() {
-        if (index < characters.length) {
-            characters[index].style.visibility = "visible";
-            index++;
-
-            setTimeout(typeWriter, 35);
-        }
-    }
-
-    typeWriter();
 });
